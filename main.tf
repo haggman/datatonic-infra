@@ -30,4 +30,12 @@ resource "google_storage_bucket" "tf_state_bucket" {
   versioning {
     enabled = true
   }
+  
+}
+
+resource "google_storage_bucket" "test_bucket" {
+  name          = "bkt-test-${random_id.instance_id.hex}"
+  force_destroy = true
+  location      = var.gcp_region
+  storage_class = "STANDARD"
 }
