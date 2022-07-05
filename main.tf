@@ -1,6 +1,6 @@
 provider "google" {
-  project     = var.project_id
-  region      = var.gcp_region
+  project = var.project_id
+  region  = var.gcp_region
 }
 
 /*
@@ -10,10 +10,10 @@ provider "google" {
     to copy the state file into the bucket.
 */
 terraform {
- backend "gcs" {
-   bucket  = "bkt-tfstate-a9fe4b60314bf1c2"
-   prefix  = "terraform/state"
- }
+  backend "gcs" {
+    bucket = "bkt-tfstate-a9fe4b60314bf1c2"
+    prefix = "terraform/state"
+  }
 }
 
 
@@ -23,7 +23,7 @@ resource "random_id" "instance_id" {
 }
 
 resource "google_storage_bucket" "tf_state_bucket" {
-  name = "bkt-tfstate-${random_id.instance_id.hex}"
+  name          = "bkt-tfstate-${random_id.instance_id.hex}"
   force_destroy = false
   location      = var.gcp_region
   storage_class = "STANDARD"
