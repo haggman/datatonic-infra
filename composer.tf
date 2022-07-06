@@ -29,7 +29,6 @@ resource "google_composer_environment" "pipeline_composer_instance" {
     node_config {
       service_account = google_service_account.composer_sa.email
       network = module.vpc.network_id
-      subnetwork = module.vpc.subnet_ids[0]
     }
   }
 }
