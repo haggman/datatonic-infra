@@ -21,7 +21,8 @@ locals {
       //Add compute for networking, VMs, etc.
       "compute.googleapis.com",
       //Cloud Composer
-      "composer.googleapis.com"
+      "composer.googleapis.com",
+      "sqladmin.googleapis.com"
     ])
 }
 resource "google_project_service" "enable_apis" {

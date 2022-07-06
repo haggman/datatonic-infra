@@ -13,7 +13,7 @@ module "vpc" {
 
     subnets = [
         {
-            subnet_name           = "sb-vpc-core-london"
+            subnet_name           = "sb-core-london"
             subnet_ip             = "10.0.0.0/20"
             subnet_region         = var.gcp_region
         }
