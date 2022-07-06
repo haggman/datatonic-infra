@@ -19,3 +19,15 @@ resource "google_project_iam_member" "composer_sa_roles" {
   member  = format("serviceAccount:%s",
               google_service_account.composer_sa.email)
 }
+
+//Create the Composer instance
+resource "google_composer_environment" "pipeline_composer_instance" {
+  name = "pipeline_compose"
+  region = var.gcp_region
+
+  config {
+    node_config {
+      service_account = google_service_account.composer_sa.email
+    }
+  }
+}
