@@ -4,7 +4,7 @@
     build the custom one.
 */
 
-//build the network, the Google blueprint makes it easy
+//build the network, the Google blueprint makes it easier
 module "vpc" {
     source  = "terraform-google-modules/network/google"
 
