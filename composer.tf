@@ -37,5 +37,5 @@ output "network_name" {
 }
 
 output "subnet_id" {
-  value = module.vpc.subnets_ids
+  value = module.vpc.subnets_ids[0]
 }
