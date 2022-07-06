@@ -22,7 +22,7 @@ resource "google_project_iam_member" "composer_sa_roles" {
 
 //Create the Composer instance
 resource "google_composer_environment" "pipeline_composer_instance" {
-  name = "pipeline_compose"
+  name = "pipeline-composer"
   region = var.gcp_region
 
   config {
