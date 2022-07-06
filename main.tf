@@ -1,6 +1,6 @@
 //Enable project services/APIs
 locals {
-  apis_to_enable = set([    
+  apis_to_enable = toset([    
       "bigquery.googleapis.com",
       "bigquerymigration.googleapis.com",
       "bigquerystorage.googleapis.com",
