@@ -4,7 +4,7 @@
     build the custom one.
 */
 
-//build the network, the Google blueprint makes it easy
+//build the network, the Google blueprint makes it easier
 module "vpc" {
     source  = "terraform-google-modules/network/google"
 
@@ -13,7 +13,7 @@ module "vpc" {
 
     subnets = [
         {
-            subnet_name           = "sb-vpc-core-london"
+            subnet_name           = "sb-core-london"
             subnet_ip             = "10.0.0.0/20"
             subnet_region         = var.gcp_region
         }
