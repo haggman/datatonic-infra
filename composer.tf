@@ -7,3 +7,15 @@ resource "google_service_account" "composer_sa" {
 
 //Set the permissions on the composer SA
 
+locals {
+  roles_for_sa = toset([
+    "roles/composer.worke" 
+    ])
+}
+resource "google_project_iam_member" "composer_sa_roles" {
+  for_each = local.roles_for_sa
+  project = var.project_id
+  role    = each.value
+  member  = format("serviceAccount:%s",
+              google_service_account.composer_sa.email)
+}
