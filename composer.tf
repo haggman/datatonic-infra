@@ -9,7 +9,7 @@ resource "google_service_account" "composer_sa" {
 
 locals {
   roles_for_sa = toset([
-    "roles/composer.worke" 
+    "roles/composer.worker" 
     ])
 }
 resource "google_project_iam_member" "composer_sa_roles" {
