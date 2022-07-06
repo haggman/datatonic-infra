@@ -28,6 +28,8 @@ resource "google_composer_environment" "pipeline_composer_instance" {
   config {
     node_config {
       service_account = google_service_account.composer_sa.email
+      network = "vpc_core"
+      subnetwork = "sb-core-london"
     }
   }
 }
