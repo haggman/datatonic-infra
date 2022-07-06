@@ -1,6 +1,6 @@
 //Enable project services/APIs
 locals {
-  apis_to_enable = [    
+  apis_to_enable = set([    
       "bigquery.googleapis.com",
       "bigquerymigration.googleapis.com",
       "bigquerystorage.googleapis.com",
@@ -17,7 +17,7 @@ locals {
       "storage-component.googleapis.com",
       "storage.googleapis.com",
       "sts.googleapis.com"
-    ]
+    ])
 }
 resource "google_project_service" "enable_apis" {
   for_each = local.apis_to_enable
