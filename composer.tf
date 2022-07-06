@@ -21,21 +21,15 @@ resource "google_project_iam_member" "composer_sa_roles" {
 }
 
 //Create the Composer instance
-# resource "google_composer_environment" "pipeline_composer_instance" {
-#   name = "pipeline-composer"
-#   region = var.gcp_region
+resource "google_composer_environment" "pipeline_composer_instance" {
+  name = "pipeline-composer"
+  region = var.gcp_region
 
-#   config {
-#     node_config {
-#       service_account = google_service_account.composer_sa.email
-#       network = module.vpc.network_id
-#     }
-#   }
-# }
-output "network_name" {
-  value = module.vpc.network_id
-}
-
-output "subnet_id" {
-  value = module.vpc.subnets_ids[0]
+  config {
+    node_config {
+      service_account = google_service_account.composer_sa.email
+      network = module.vpc.network_id
+      subnetwork = module.vpc.subnets_ids[0]
+    }
+  }
 }
