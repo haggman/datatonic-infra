@@ -26,7 +26,7 @@ locals {
             "user" = "alice.staton@datatonic.com"
         },...
   */
-  privliges = flatten([
+  privileges = flatten([
     for user_key, roles in local.user_roles : [
         for role in roles :
         {
@@ -37,12 +37,23 @@ locals {
   ])
 }
 
-# output "roles" {
-#   value = { for entry in local.privliges: "${entry.user}.${entry.role}" => entry }
-# }
+/*
+    Configure all the roles. Ok, so the above generated a tuple of objects, each one
+    containing a user and a role. To convert each to something more palatable for the 
+    Terraform for_each, I used:
+    for_each = { for entry in local.privileges: "${entry.user}.${entry.role}" => entry }
+    You can go read more about that for here: https://www.terraform.io/language/expressions/for
+    Essentially, it's used to convert one complex type to another. In this case, for each
+    element in my incoming tuple of objects, I want a single map { }, where the key is
+    user.role and the value (=>) is the object itself, 
+    {
+            "role" = "some role"
+            "user" = "some user"
+    }
+*/
 
 resource "google_project_iam_member" "user_roles" {
-  for_each = { for entry in local.privliges: "${entry.user}.${entry.role}" => entry }
+  for_each = { for entry in local.privileges: "${entry.user}.${entry.role}" => entry }
   project = var.project_id
   role    = each.value.role
   member  = format("user:%s", each.value.user)
