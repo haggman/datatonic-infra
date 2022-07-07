@@ -1,3 +1,4 @@
+//Setup some access for the students
 locals {
   //my list of users and their corresponding roles
   user_roles = {
@@ -57,4 +58,26 @@ resource "google_project_iam_member" "user_roles" {
   project  = var.project_id
   role     = each.value.role
   member   = format("user:%s", each.value.user)
+}
+
+//Create the SA for composer to use
+resource "google_service_account" "composer_sa" {
+  account_id   = "sa-pipeline-composer"
+  display_name = "Composer pipeline's SA"
+  project      = var.project_id
+}
+
+//Set the permissions on the composer SA
+
+locals {
+  roles_for_sa = toset([
+    "roles/composer.worker"
+  ])
+}
+resource "google_project_iam_member" "composer_sa_roles" {
+  for_each = local.roles_for_sa
+  project  = var.project_id
+  role     = each.value
+  member = format("serviceAccount:%s",
+  google_service_account.composer_sa.email)
 }
