@@ -13,8 +13,11 @@ locals {
   }
 
   privliges = flatten([
-    for user_key, user in local.user_roles : [
-        format("user:%s, role:%s", user_key, user)
+    for user_key, role in local.user_roles : [
+        {
+            user_email = user_key,
+            role = role
+        }
     ]
   ])
   
