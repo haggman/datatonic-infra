@@ -1,16 +1,16 @@
 locals {
-    //my list of users and their corresponding roles
+  //my list of users and their corresponding roles
   user_roles = {
-    "nan.kang@datatonic.com" = ["roles/browser"],
+    "nan.kang@datatonic.com"        = ["roles/browser"],
     "abdikarim.dilib@datatonic.com" = ["roles/browser"],
-    "alice.staton@datatonic.com" = ["roles/browser"],
-    "ferda.ustun@datatonic.com" = ["roles/browser"],
+    "alice.staton@datatonic.com"    = ["roles/browser"],
+    "ferda.ustun@datatonic.com"     = ["roles/browser"],
     "kumail.kermalli@datatonic.com" = ["roles/browser"],
-    "lily.relph@datatonic.com" = ["roles/browser"],
+    "lily.relph@datatonic.com"      = ["roles/browser"],
     "miles.trevethan@datatonic.com" = ["roles/browser"],
-    "mohamed.khadar@datatonic.com" = ["roles/browser"],
-    "ronak.patel@datatonic.com" = ["roles/browser"],
-    "sabah.hussain@datatonic.com" = ["roles/browser"],
+    "mohamed.khadar@datatonic.com"  = ["roles/browser"],
+    "ronak.patel@datatonic.com"     = ["roles/browser"],
+    "sabah.hussain@datatonic.com"   = ["roles/browser"],
   }
 
   /*
@@ -28,11 +28,11 @@ locals {
   */
   privileges = flatten([
     for user_key, roles in local.user_roles : [
-        for role in roles :
-        {
-            user = user_key,
-            role = role
-        }
+      for role in roles :
+      {
+        user = user_key,
+        role = role
+      }
     ]
   ])
 }
@@ -53,8 +53,8 @@ locals {
 */
 
 resource "google_project_iam_member" "user_roles" {
-  for_each = { for entry in local.privileges: "${entry.user}.${entry.role}" => entry }
-  project = var.project_id
-  role    = each.value.role
-  member  = format("user:%s", each.value.user)
+  for_each = { for entry in local.privileges : "${entry.user}.${entry.role}" => entry }
+  project  = var.project_id
+  role     = each.value.role
+  member   = format("user:%s", each.value.user)
 }
