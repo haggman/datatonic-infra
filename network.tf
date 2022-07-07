@@ -14,7 +14,7 @@ module "vpc" {
   subnets = [
     {
       subnet_name   = "sb-core-london"
-      subnet_ip     = "10.0.0.0/20"
+      subnet_ip     = var.london_subnet_cidr
       subnet_region = var.gcp_region
       subnet_private_access = "true"
     }
@@ -24,35 +24,80 @@ module "vpc" {
         sb-core-london = [
             {
                 range_name    = "composer-cluster-pods"
-                ip_cidr_range = "10.32.0.0/14"
+                ip_cidr_range = var.composer_pod_cidr
             },
             {
                 range_name    = "composer-cluster-services"
-                ip_cidr_range = "10.36.0.0/20"
+                ip_cidr_range = var.composer_service_cidr
             },
         ]
     }
 
-  # firewall_rules = [
-  #     //Firewalls for Composer
-  #     {
-  #     name                    = "allow-ssh-ingress"
-  #     description             = null
-  #     direction               = "INGRESS"
-  #     priority                = null
-  #     ranges                  = ["0.0.0.0/0"]
-  #     source_tags             = null
-  #     source_service_accounts = null
-  #     target_tags             = null
-  #     target_service_accounts = null
-  #     allow = [{
-  #       protocol = "tcp"
-  #       ports    = ["22"]
-  #     }]
-  #     deny = []
-  #     log_config = {
-  #       metadata = "INCLUDE_ALL_METADATA"
-  #     }
-  #   }
-  # ]
+  firewall_rules = [
+      //Firewalls for Composer
+    {
+      name                    = "fw-core-1000-i-a-node-node-tcp-all"
+      description             = null
+      direction               = "INGRESS"
+      priority                = 1000
+      ranges                  = [var.london_subnet_cidr]
+      source_tags             = null
+      source_service_accounts = null
+      target_tags             = null
+      target_service_accounts = [google_service_account.composer_sa.email]
+      allow = [{
+        protocol = "tcp"
+        ports    = ["0-65535"]
+      }]
+      deny = []
+    },
+    {
+      name                    = "fw-core-1000-i-a-master-node-tcp-all"
+      description             = null
+      direction               = "INGRESS"
+      priority                = 1000
+      ranges                  = [var.composer_master_cidr]
+      source_tags             = null
+      source_service_accounts = null
+      target_tags             = null
+      target_service_accounts = [google_service_account.composer_sa.email]
+      allow = [{
+        protocol = "tcp"
+        ports    = ["0-65535"]
+      }]
+      deny = []
+    },
+    {
+      name                    = "fw-core-1000-i-a-service-node-tcp-all"
+      description             = null
+      direction               = "INGRESS"
+      priority                = 1000
+      ranges                  = [var.composer_service_cidr]
+      source_tags             = null
+      source_service_accounts = null
+      target_tags             = null
+      target_service_accounts = [google_service_account.composer_sa.email]
+      allow = [{
+        protocol = "tcp"
+        ports    = ["0-65535"]
+      }]
+      deny = []
+    },
+    {
+      name                    = "fw-core-1000-i-a-health-check-node-tcp-80-443"
+      description             = null
+      direction               = "INGRESS"
+      priority                = 1000
+      ranges                  = ["130.211.0.0/22", "35.191.0.0/16"]
+      source_tags             = null
+      source_service_accounts = null
+      target_tags             = null
+      target_service_accounts = [google_service_account.composer_sa.email]
+      allow = [{
+        protocol = "tcp"
+        ports    = ["80", "443"]
+      }]
+      deny = []
+    }
+  ]
 }

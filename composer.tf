@@ -1,4 +1,4 @@
-# //Create the Composer instance
+//Create the Composer instance
 # resource "google_composer_environment" "pipeline_composer_instance" {
 #   name   = "pipeline-composer"
 #   region = var.gcp_region
@@ -11,12 +11,15 @@
 #       //Make cluster VPC native (to support private IPs)
 #       ip_allocation_policy {
 #         use_ip_aliases = true
+#         cluster_secondary_range_name = "composer-cluster-pods"
+#         services_secondary_range_name = "composer-cluster-services"
 #       }
 #     }
 
 #     //Set cluster to use private IPs
 #     private_environment_config {
 #       enable_private_endpoint = true
+#       master_ipv4_cidr_block = "10.40.0.0/28"
 #     }
 #   }
 # }
