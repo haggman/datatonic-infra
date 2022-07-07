@@ -9,15 +9,12 @@ locals {
     "miles.trevethan@datatonic.com" = ["roles/browser"],
     "mohamed.khadar@datatonic.com" = ["roles/browser"],
     "ronak.patel@datatonic.com" = ["roles/browser"],
-    "sabah.hussain@datatonic.com" = ["roles/browser"]
+    "sabah.hussain@datatonic.com" = ["roles/browser"],
   }
 
   privliges = flatten([
     for user_key, role in local.user_roles : [
-        {
-            user_email = user_key,
-            role = role
-        }
+        {user_email = user_key,role = role}
     ]
   ])
   
