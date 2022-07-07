@@ -1,8 +1,8 @@
 module "bigquery" {
   source = "terraform-google-modules/bigquery/google"
 
-  dataset_id   = "datatonic-pipeline"
-  dataset_name = "datatonic-pipeline"
+  dataset_id   = "datatonic_pipeline"
+  dataset_name = "datatonic_pipeline"
   description  = "Contains the tables for the case study pipeline"
   project_id   = var.project_id
   location     = var.gcp_region
