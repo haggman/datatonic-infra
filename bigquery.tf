@@ -10,10 +10,24 @@ module "bigquery" {
   tables = [
     {
       table_id = "projects_staging",
-      schema   = file("input_staging_schema.json"),
+      schema   = file("projects_staging_schema.json"),
       time_partitioning = {
         type  = "DAY",
-        field = "start_date",
+        field = "updated_at",
+        require_partition_filter = false,
+        expiration_ms            = null,
+      },
+      expiration_time = null,
+      range_partitioning = null,
+      clustering      = ["id"],
+      labels = {}
+    },
+    {
+      table_id = "tasks_staging",
+      schema   = file("tasks_staging_schema.json"),
+      time_partitioning = {
+        type  = "DAY",
+        field = "updated_at",
         require_partition_filter = false,
         expiration_ms            = null,
       },
