@@ -13,13 +13,13 @@ module "bigquery" {
       schema   = file("input_staging_schema.json"),
       time_partitioning = {
         type  = "DAY",
-        field = "updated_at",
+        field = "start_date",
         require_partition_filter = false,
         expiration_ms            = null,
       },
       expiration_time = null,
       range_partitioning = null,
-      clustering      = [],
+      clustering      = ["id"],
       labels = {}
     },
   ]
