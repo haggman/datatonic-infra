@@ -39,7 +39,8 @@ resource "google_service_account" "run_deployer_sa" {
 
 locals {
   roles_for_run_deployer_sa = toset([
-    "roles/run.admin"
+    "roles/run.admin",
+    "roles/storage.admin"
   ])
 }
 resource "google_project_iam_member" "run_deployer_sa_roles" {
