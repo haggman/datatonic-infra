@@ -13,28 +13,28 @@ module "vpc" {
 
   subnets = [
     {
-      subnet_name   = "sb-core-london"
-      subnet_ip     = var.london_subnet_cidr
-      subnet_region = var.gcp_region
+      subnet_name           = "sb-core-london"
+      subnet_ip             = var.london_subnet_cidr
+      subnet_region         = var.gcp_region
       subnet_private_access = "true"
     }
   ]
 
   secondary_ranges = {
-        sb-core-london = [
-            {
-                range_name    = "composer-cluster-pods"
-                ip_cidr_range = var.composer_pod_cidr
-            },
-            {
-                range_name    = "composer-cluster-services"
-                ip_cidr_range = var.composer_service_cidr
-            },
-        ]
-    }
+    sb-core-london = [
+      {
+        range_name    = "composer-cluster-pods"
+        ip_cidr_range = var.composer_pod_cidr
+      },
+      {
+        range_name    = "composer-cluster-services"
+        ip_cidr_range = var.composer_service_cidr
+      },
+    ]
+  }
 
   firewall_rules = [
-      //Firewalls for Composer
+    //Firewalls for Composer
     {
       name                    = "fw-core-1000-i-a-node-node-tcp-all"
       description             = null

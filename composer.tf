@@ -32,8 +32,8 @@ resource "google_composer_environment" "pipeline_composer_instance" {
       subnetwork      = module.vpc.subnets_ids[0]
       //Make cluster VPC native (to support private IPs)
       ip_allocation_policy {
-        use_ip_aliases = true
-        cluster_secondary_range_name = "composer-cluster-pods"
+        use_ip_aliases                = true
+        cluster_secondary_range_name  = "composer-cluster-pods"
         services_secondary_range_name = "composer-cluster-services"
       }
     }
@@ -41,7 +41,7 @@ resource "google_composer_environment" "pipeline_composer_instance" {
     //Set cluster to use private IPs
     private_environment_config {
       enable_private_endpoint = true
-      master_ipv4_cidr_block = var.composer_master_cidr
+      master_ipv4_cidr_block  = var.composer_master_cidr
     }
   }
 }

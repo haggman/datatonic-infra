@@ -12,29 +12,29 @@ module "bigquery" {
       table_id = "projects_staging",
       schema   = file("projects_staging_schema.json"),
       time_partitioning = {
-        type  = "DAY",
-        field = "updated_at",
+        type                     = "DAY",
+        field                    = "updated_at",
         require_partition_filter = false,
         expiration_ms            = null,
       },
-      expiration_time = null,
+      expiration_time    = null,
       range_partitioning = null,
-      clustering      = ["id"],
-      labels = {}
+      clustering         = ["id"],
+      labels             = {}
     },
     {
       table_id = "tasks_staging",
       schema   = file("tasks_staging_schema.json"),
       time_partitioning = {
-        type  = "DAY",
-        field = "updated_at",
+        type                     = "DAY",
+        field                    = "updated_at",
         require_partition_filter = false,
         expiration_ms            = null,
       },
-      expiration_time = null,
+      expiration_time    = null,
       range_partitioning = null,
-      clustering      = ["id"],
-      labels = {}
+      clustering         = ["id"],
+      labels             = {}
     },
   ]
 }
