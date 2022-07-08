@@ -51,12 +51,9 @@ resource "google_project_iam_member" "run_deployer_sa_roles" {
 }
 
 //Make sure the GCR bucket exists
-resource "google_storage_bucket" "gcr_bucket" {
-  name          = "artifacts.${var.project_id}.appspot.com"
-  force_destroy = false
-  location      = "EU"
-  storage_class = "STANDARD"
-  versioning {
-    enabled = true
-  }
+resource "google_container_registry" "run_registry" {
+  project  = var.project_id
+  location = "EU" //doesn't support London only
 }
+//The created bucket's name is in:
+//google_container_registry.run_registry.id
