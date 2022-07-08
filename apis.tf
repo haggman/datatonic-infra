@@ -25,7 +25,8 @@ locals {
     "sqladmin.googleapis.com",
     //Cloud Run
     "containerregistry.googleapis.com",
-    "run.googleapis.com"
+    "run.googleapis.com",
+    "vpcaccess.googleapis.com"
   ])
 }
 resource "google_project_service" "enable_apis" {

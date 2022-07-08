@@ -51,3 +51,11 @@ resource "google_container_registry" "run_registry" {
 }
 //The created bucket's name is in:
 //google_container_registry.run_registry.id
+
+//Create Cloud Run's VPC Connector
+# resource "google_vpc_access_connector" "connector" {
+#   name          = "vpcconn"
+#   region        = var.gcp_region
+#   ip_cidr_range = var.composer_vpc_access_subnet
+#   network       = module.vpc.network_id
+# }

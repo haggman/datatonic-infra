@@ -30,3 +30,8 @@ variable "composer_master_cidr" {
   type = string
   default = "10.40.0.0/28"
 }
+
+variable "composer_vpc_access_subnet" {
+  type = string
+  default = "10.41.0.0/28"
+}
