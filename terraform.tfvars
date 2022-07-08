@@ -1,2 +1,2 @@
-project_id     = "datatonic-dev"
-project_number = "567385974785"
+project_id     = "dt-patrick-project-dev"
+project_number = "868367057008"

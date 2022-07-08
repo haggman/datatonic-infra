@@ -22,7 +22,10 @@ locals {
     "compute.googleapis.com",
     //Cloud Composer
     "composer.googleapis.com",
-    "sqladmin.googleapis.com"
+    "sqladmin.googleapis.com",
+    //Cloud Run
+    "containerregistry.googleapis.com",
+    "run.googleapis.com"
   ])
 }
 resource "google_project_service" "enable_apis" {
