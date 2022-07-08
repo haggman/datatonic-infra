@@ -1,16 +1,7 @@
-//Create the SA for API Access
-resource "google_service_account" "forecast_accessor_sa" {
-  account_id   = "forecast-accessor"
-  display_name = "Can access Forecast data"
-  project      = var.project_id
-}
-
-
-
 //Create the SA for Cloud Run to use
 resource "google_service_account" "run_sa" {
-  account_id   = "sa-run-data-loader"
-  display_name = "Cloud Run Data Loader"
+  account_id   = "forecast-accessor"
+  display_name = "Can access Forecast data"
   project      = var.project_id
 }
 
@@ -18,6 +9,7 @@ resource "google_service_account" "run_sa" {
 
 locals {
   roles_for_run_sa = toset([
+    "roles/iam.serviceAccountUser"
   ])
 }
 resource "google_project_iam_member" "run_sa_roles" {
