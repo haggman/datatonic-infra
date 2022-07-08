@@ -1,7 +1,7 @@
 //Create the SA for Cloud Run to use
 resource "google_service_account" "run_sa" {
   account_id   = "forecast-accessor"
-  display_name = "Can access Forecast data"
+  display_name = "Cloud Run app SA (Forecast accessor)"
   project      = var.project_id
 }
 
@@ -23,7 +23,7 @@ resource "google_project_iam_member" "run_sa_roles" {
 //Create the SA for Cloud Run deployer
 resource "google_service_account" "run_deployer_sa" {
   account_id   = "sa-run-data-loader-deployer"
-  display_name = "Can deploy the Cloud Run Data Loader"
+  display_name = "Cloud Run deployer"
   project      = var.project_id
 }
 
