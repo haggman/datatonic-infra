@@ -51,7 +51,7 @@ resource "google_project_iam_member" "run_deployer_sa_roles" {
 }
 
 //Make sure the GCR bucket exists
-resource "google_storage_bucket" "tf_state_bucket" {
+resource "google_storage_bucket" "gcr_bucket" {
   name          = "artifacts.${var.project_id}.appspot.com"
   force_destroy = false
   location      = "EU"
