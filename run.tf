@@ -40,7 +40,8 @@ resource "google_service_account" "run_deployer_sa" {
 locals {
   roles_for_run_deployer_sa = toset([
     "roles/run.admin",
-    "roles/storage.admin"
+    "roles/storage.admin", //Really only needed for first push (Creates initial GCR bucket)
+    "roles/iam.serviceAccountUser"
   ])
 }
 resource "google_project_iam_member" "run_deployer_sa_roles" {
