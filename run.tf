@@ -1,5 +1,5 @@
 //Create the SA for API Access
-resource "google_service_account" "run_sa" {
+resource "google_service_account" "forecast_accessor_sa" {
   account_id   = "forecast-accessor"
   display_name = "Cloud Run Data Loader"
   project      = var.project_id
