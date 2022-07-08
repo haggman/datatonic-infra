@@ -61,7 +61,7 @@ locals {
     "roles/storage.objectAdmin"
   ])
 }
-resource "google_project_iam_member" "composer_sa_roles" {
+resource "google_project_iam_member" "composer_deployer_sa_roles" {
   for_each = local.roles_for_deployer_sa
   project  = var.project_id
   role     = each.value
