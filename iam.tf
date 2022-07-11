@@ -59,3 +59,74 @@ resource "google_project_iam_member" "user_roles" {
   role     = each.value.role
   member   = format("user:%s", each.value.user)
 }
+
+//Now for the service accounts
+
+//First, let's build the SAs. 
+//Create the SA for composer to use
+resource "google_service_account" "composer_sa" {
+  account_id   = "sa-pipeline-composer"
+  display_name = "Composer pipeline's SA"
+  project      = var.project_id
+}
+
+//Create the SA that deploys to Composer
+resource "google_service_account" "composer_deployer_sa" {
+  account_id   = "sa-composer-deployer"
+  display_name = "Composer Deployer"
+  project      = var.project_id
+}
+
+//Create the SA for Cloud Run to use
+resource "google_service_account" "run_sa" {
+  account_id   = "forecast-accessor"
+  display_name = "Cloud Run app SA (Forecast accessor)"
+  project      = var.project_id
+}
+
+//Create the SA for Cloud Run deployer
+resource "google_service_account" "run_deployer_sa" {
+  account_id   = "sa-run-data-loader-deployer"
+  display_name = "Cloud Run deployer"
+  project      = var.project_id
+}
+
+
+
+//Setup the permissions and do the flatten
+locals {
+  sa_roles = {
+    //Cloud composer SA
+    (google_service_account.composer_sa.email)        = ["roles/composer.worker"],
+    //Cloud composer deployer
+    (google_service_account.composer_deployer_sa.email) = ["roles/storage.objectAdmin"],
+    //Cloud Run
+    (google_service_account.run_sa.email) = ["roles/iam.serviceAccountUser"],
+    //Cloud Run deployer
+    (google_service_account.run_deployer_sa.email) = [
+                                                    "roles/run.admin",
+                                                    "roles/storage.admin", //Really only needed for first push (Creates initial GCR bucket)
+                                                    "roles/iam.serviceAccountUser"
+                                                  ],
+    
+  }
+
+    //Flatten the SAs and their respective permissions. 
+    sa_privileges = flatten([
+    for user_key, roles in local.sa_roles : [
+      for role in roles :
+      {
+        user = user_key,
+        role = role
+      }
+    ]
+  ])
+}
+
+//Apply the permissions
+resource "google_project_iam_member" "sa_roles" {
+  for_each = { for entry in local.sa_privileges : "${entry.user}.${entry.role}" => entry }
+  project  = var.project_id
+  role     = each.value.role
+  member   = format("serviceAccount:%s", each.value.user)
+}
