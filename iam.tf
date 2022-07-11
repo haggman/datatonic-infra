@@ -98,6 +98,8 @@ locals {
   sa_roles = {
     //Cloud composer SA
     (google_service_account.composer_sa.email)        = ["roles/composer.worker"],
+    //Auto created, Composer 2 SA
+     "service-${var.project_number}@cloudcomposer-accounts.iam.gserviceaccount.com" = ["roles/composer.ServiceAgentV2Ext"],
     //Cloud composer deployer
     (google_service_account.composer_deployer_sa.email) = ["roles/storage.objectAdmin"],
     //Cloud Run
@@ -108,6 +110,7 @@ locals {
                                                     "roles/storage.admin", //Really only needed for first push (Creates initial GCR bucket)
                                                     "roles/iam.serviceAccountUser"
                                                   ],
+   
     
   }
 
