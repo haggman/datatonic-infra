@@ -98,6 +98,23 @@ module "vpc" {
         ports    = ["80", "443"]
       }]
       deny = []
+    },
+    //Enable ingress from IAP for testing from VM
+    {
+      name                    = "fw-core-1000-i-a-iap-ssh-tcp-22"
+      description             = null
+      direction               = "INGRESS"
+      priority                = 1000
+      ranges                  = ["35.235.240.0/20"]
+      source_tags             = null
+      source_service_accounts = null
+      target_tags             = null
+      target_service_accounts = null
+      allow = [{
+        protocol = "tcp"
+        ports    = ["22"]
+      }]
+      deny = []
     }
   ]
 }
