@@ -26,7 +26,9 @@ locals {
     //Cloud Run
     "containerregistry.googleapis.com",
     "run.googleapis.com",
-    "vpcaccess.googleapis.com"
+    "vpcaccess.googleapis.com",
+    //Secret Manager
+    "secretmanager.googleapis.com",
   ])
 }
 resource "google_project_service" "enable_apis" {
