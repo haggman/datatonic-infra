@@ -1,10 +1,27 @@
 // Setup the secret for API access. Note: the secret's actual value will need to 
 // be manually set. 
 
+//Create the secret
+locals {
+  secret_id = "forecast-api-secret"
+}
+resource "google_secret_manager_secret" "forecast-api-secret" {
+  secret_id = local.secret_id
+
+  replication {
+    user_managed {
+      replicas {
+        location = var.gcp_region
+      }
+    }
+  }
+}
+
+//Next, setup the IAM for the secret
 module "secret_manager_iam" {
   source  = "terraform-google-modules/iam/google//modules/secret_manager_iam"
   project = var.project_id
-  secrets = ["forecast-api-secret"]
+  secrets = [local.secret_id]
   mode = "additive"
 
   //going to let Cloud Run and Airflow access secrets, just in case
