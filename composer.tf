@@ -16,7 +16,6 @@ resource "google_composer_environment" "pipeline_composer_instance" {
       subnetwork      = module.vpc.subnets_ids[0]
       
        ip_allocation_policy {
-        use_ip_aliases                = true
         cluster_secondary_range_name  = "composer-cluster-pods"
         services_secondary_range_name = "composer-cluster-services"
       }
