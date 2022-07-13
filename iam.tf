@@ -97,7 +97,10 @@ resource "google_service_account" "run_deployer_sa" {
 locals {
   sa_roles = {
     //Cloud composer SA
-    (google_service_account.composer_sa.email)        = ["roles/composer.worker"],
+    (google_service_account.composer_sa.email)        = [
+                                                        "roles/composer.worker",
+                                                        "roles/run.invoker",
+                                                        ],
     //Auto created, Composer 2 SA
      "service-${var.project_number}@cloudcomposer-accounts.iam.gserviceaccount.com" = ["roles/composer.ServiceAgentV2Ext"],
     //Cloud composer deployer
