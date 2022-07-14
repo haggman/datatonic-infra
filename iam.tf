@@ -109,7 +109,6 @@ locals {
     (google_service_account.run_sa.email) = [
                                   "roles/iam.serviceAccountUser",
                                   "roles/storage.objectAdmin",
-                                  "roles/storage.legacyBucketReader",
                                   ],
     //Cloud Run deployer
     (google_service_account.run_deployer_sa.email) = [
