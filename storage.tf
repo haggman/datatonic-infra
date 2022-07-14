@@ -10,6 +10,6 @@ module "gcs_buckets" {
   randomize_suffix = true
 
   set_admin_roles = true
-  admins = [google_service_account.run_sa.email]
+  admins = ["serviceAccount:${google_service_account.run_sa.email}"]
 
 }
