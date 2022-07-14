@@ -106,7 +106,11 @@ locals {
     //Cloud composer deployer
     (google_service_account.composer_deployer_sa.email) = ["roles/storage.objectAdmin"],
     //Cloud Run
-    (google_service_account.run_sa.email) = ["roles/iam.serviceAccountUser"],
+    (google_service_account.run_sa.email) = [
+                                  "roles/iam.serviceAccountUser",
+                                  "roles/storage.objectAdmin",
+                                  "roles/storage.legacyBucketReader",
+                                  ],
     //Cloud Run deployer
     (google_service_account.run_deployer_sa.email) = [
                                                     "roles/run.admin",
