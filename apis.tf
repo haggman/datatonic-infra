@@ -29,6 +29,8 @@ locals {
     "vpcaccess.googleapis.com",
     //Secret Manager
     "secretmanager.googleapis.com",
+    //BQ Data Transfer
+    "bigquerydatatransfer.googleapis.com",
   ])
 }
 resource "google_project_service" "enable_apis" {
