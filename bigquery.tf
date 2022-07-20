@@ -49,7 +49,7 @@ resource "google_bigquery_data_transfer_config" "load_projects" {
   schedule_options {
     disable_auto_scheduling = true
   }
-  destination_dataset_id = module.bigquery.dataset_id
+  destination_dataset_id = "datatonic_pipeline"
   params = {
     destination_table_name_template = "projects_staging"
     data_path_template              = google_storage_bucket.pipeline_staging_bucket.name
