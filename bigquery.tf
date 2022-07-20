@@ -38,3 +38,22 @@ module "bigquery" {
     },
   ]
 }
+
+//Transfer job for the projects.json
+resource "google_bigquery_data_transfer_config" "load_projects" {
+
+  display_name           = "project-loader"
+  location               = var.gcp_region
+  data_source_id         = "project-loader"
+  schedule               = ""
+  schedule_options {
+    disable_auto_scheduling = true
+  }
+  destination_dataset_id = module.bigquery.dataset_id
+  params = {
+    destination_table_name_template = "projects_staging"
+    data_path_template              = google_storage_bucket.pipeline_staging_bucket.name
+    file_format                     = "JSON"
+    write_preference                = "MIRROR"
+  }
+}
