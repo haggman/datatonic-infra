@@ -35,6 +35,11 @@
     "mode": "NULLABLE"
   },
   {
+    "name": "billable",
+    "type": "BOOL",
+    "mode": "NULLABLE"
+  },
+  {
     "name": "description",
     "type": "STRING",
     "mode": "NULLABLE"
@@ -95,6 +100,21 @@
     "mode": "NULLABLE"
   },
   {
+    "name": "use_task_owner",
+    "type": "BOOL",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "use_task_followers",
+    "type": "BOOL",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "use_sub_tasks",
+    "type": "BOOL",
+    "mode": "NULLABLE"
+  },
+  {
     "name": "client",
     "type": "INT64",
     "mode": "NULLABLE"
@@ -136,8 +156,20 @@
   },
   {
     "name": "external_refs",
-    "type": "STRING",
-    "mode": "REPEATED"
+    "type": "RECORD",
+    "mode": "REPEATED",
+    "fields": [
+      {
+        "name": "name",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "value",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+    ]
   },
   {
     "name": "default_period_periodicity",
