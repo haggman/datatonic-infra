@@ -41,11 +41,11 @@ module "bigquery" {
 
 //Transfer job for the projects.json
 resource "google_bigquery_data_transfer_config" "load_projects" {
-  project                = var.project_id
-  display_name           = "project-loader"
-  location               = var.gcp_region
-  data_source_id         = "google_cloud_storage"
-  schedule               = ""
+  project        = var.project_id
+  display_name   = "project-loader"
+  location       = var.gcp_region
+  data_source_id = "google_cloud_storage"
+  schedule       = ""
   schedule_options {
     disable_auto_scheduling = true
   }
@@ -54,6 +54,25 @@ resource "google_bigquery_data_transfer_config" "load_projects" {
     destination_table_name_template = "projects_staging"
     data_path_template              = "gs://bkt-pipeline-staging-f5399bba/projects.json"
     file_format                     = "JSON"
-    write_disposition                = "MIRROR"
+    write_disposition               = "MIRROR"
+  }
+}
+
+//Transfer job for tasks.json
+resource "google_bigquery_data_transfer_config" "load_tasks" {
+  project        = var.project_id
+  display_name   = "task-loader"
+  location       = var.gcp_region
+  data_source_id = "google_cloud_storage"
+  schedule       = ""
+  schedule_options {
+    disable_auto_scheduling = true
+  }
+  destination_dataset_id = "datatonic_pipeline"
+  params = {
+    destination_table_name_template = "projects_staging"
+    data_path_template              = "gs://bkt-pipeline-staging-f5399bba/tasks.json"
+    file_format                     = "JSON"
+    write_disposition               = "MIRROR"
   }
 }

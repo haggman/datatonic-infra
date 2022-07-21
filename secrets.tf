@@ -19,7 +19,7 @@ module "secret_manager_iam" {
   source  = "terraform-google-modules/iam/google//modules/secret_manager_iam"
   project = var.project_id
   secrets = [google_secret_manager_secret.forecast-api-secret.id]
-  mode = "additive"
+  mode    = "additive"
 
   //going to let Cloud Run and Airflow access secrets, just in case
   //(since I'm not sure which will really need it for now)

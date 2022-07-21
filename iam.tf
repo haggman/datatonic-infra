@@ -97,32 +97,32 @@ resource "google_service_account" "run_deployer_sa" {
 locals {
   sa_roles = {
     //Cloud composer SA
-    (google_service_account.composer_sa.email)        = [
-                                                        "roles/composer.worker",
-                                                        "roles/run.invoker",
-                                                        ],
+    (google_service_account.composer_sa.email) = [
+      "roles/composer.worker",
+      "roles/run.invoker",
+    ],
     //Auto created, Composer 2 SA
-     "service-${var.project_number}@cloudcomposer-accounts.iam.gserviceaccount.com" = ["roles/composer.ServiceAgentV2Ext"],
+    "service-${var.project_number}@cloudcomposer-accounts.iam.gserviceaccount.com" = ["roles/composer.ServiceAgentV2Ext"],
     //Cloud composer deployer
     (google_service_account.composer_deployer_sa.email) = ["roles/storage.objectAdmin"],
     //Cloud Run
     (google_service_account.run_sa.email) = [
-                                  "roles/iam.serviceAccountUser",
-                                  "roles/storage.objectAdmin",
-                                  ],
+      "roles/iam.serviceAccountUser",
+      "roles/storage.objectAdmin",
+    ],
     //Cloud Run deployer
     (google_service_account.run_deployer_sa.email) = [
-                                                    "roles/run.admin",
-                                                    "roles/storage.admin", //Really only needed for first push (Creates initial GCR bucket)
-                                                    "roles/iam.serviceAccountUser"
-                                                  ],
+      "roles/run.admin",
+      "roles/storage.admin", //Really only needed for first push (Creates initial GCR bucket)
+      "roles/iam.serviceAccountUser"
+    ],
     //Auto created BQ Transfer Service SA
-     "service-${var.project_number}@gcp-sa-bigquerydatatransfer.iam.gserviceaccount.com" = ["roles/bigquerydatatransfer.serviceAgent"],
-    
+    "service-${var.project_number}@gcp-sa-bigquerydatatransfer.iam.gserviceaccount.com" = ["roles/bigquerydatatransfer.serviceAgent"],
+
   }
 
-    //Flatten the SAs and their respective permissions. 
-    sa_privileges = flatten([
+  //Flatten the SAs and their respective permissions. 
+  sa_privileges = flatten([
     for user_key, roles in local.sa_roles : [
       for role in roles :
       {
