@@ -116,7 +116,8 @@ locals {
                                                     "roles/storage.admin", //Really only needed for first push (Creates initial GCR bucket)
                                                     "roles/iam.serviceAccountUser"
                                                   ],
-   
+    //Auto created BQ Transfer Service SA
+     "service-${var.project_number}@gcp-sa-bigquerydatatransfer.iam.gserviceaccount.com" = ["roles/bigquerydatatransfer.serviceAgent"],
     
   }
 

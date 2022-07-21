@@ -1,219 +1,213 @@
 [
   {
-    "name": "id",
-    "type": "INT64",
-    "mode": "NULLABLE"
+    "mode": "NULLABLE",
+    "name": "default_period_price_amount",
+    "type": "INTEGER"
   },
   {
-    "name": "company_project_id",
-    "type": "INT64",
-    "mode": "NULLABLE"
+    "mode": "NULLABLE",
+    "name": "default_period_hours_amount",
+    "type": "INTEGER"
   },
   {
-    "name": "name",
-    "type": "STRING",
-    "mode": "NULLABLE"
+    "mode": "NULLABLE",
+    "name": "default_period_length",
+    "type": "INTEGER"
   },
   {
-    "name": "connected_project",
-    "type": "INT64",
-    "mode": "NULLABLE"
+    "mode": "NULLABLE",
+    "name": "default_period_periodicity",
+    "type": "STRING"
   },
   {
-    "name": "stage",
-    "type": "STRING",
-    "mode": "NULLABLE"
+    "mode": "NULLABLE",
+    "name": "default_period_budget_type",
+    "type": "STRING"
   },
   {
-    "name": "status",
-    "type": "STRING",
-    "mode": "NULLABLE"
+    "description": "bq-datetime",
+    "mode": "NULLABLE",
+    "name": "updated_at",
+    "type": "TIMESTAMP"
   },
   {
-    "name": "status_description",
-    "type": "STRING",
-    "mode": "NULLABLE"
+    "description": "bq-datetime",
+    "mode": "NULLABLE",
+    "name": "created_at",
+    "type": "TIMESTAMP"
   },
   {
-    "name": "billable",
-    "type": "BOOL",
-    "mode": "NULLABLE"
+    "mode": "NULLABLE",
+    "name": "created_by",
+    "type": "INTEGER"
   },
   {
-    "name": "description",
-    "type": "STRING",
-    "mode": "NULLABLE"
+    "mode": "NULLABLE",
+    "name": "updated_by",
+    "type": "INTEGER"
   },
   {
-    "name": "priority_level_id",
-    "type": "INT64",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "color",
-    "type": "STRING",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "estimation_units",
-    "type": "STRING",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "minutes_per_estimation_point",
-    "type": "INT64",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "budget",
-    "type": "FLOAT64",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "budget_type",
-    "type": "STRING",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "use_sprints",
-    "type": "BOOL",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "sprint_length",
-    "type": "INT64",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "start_date",
-    "type": "DATE",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "end_date",
-    "type": "DATE",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "task_levels",
-    "type": "INT64",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "use_task_owner",
-    "type": "BOOL",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "use_task_followers",
-    "type": "BOOL",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "use_sub_tasks",
-    "type": "BOOL",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "client",
-    "type": "INT64",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "rate_card",
-    "type": "INT64",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "remaining_auto_calculated",
-    "type": "BOOL",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "use_project_allocations",
-    "type": "BOOL",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "use_baseline",
-    "type": "BOOL",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "baseline_win_chance",
-    "type": "FLOAT64",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "baseline_target",
-    "type": "FLOAT64",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "labels",
-    "type": "INT64",
-    "mode": "REPEATED"
-  },
-  {
-    "name": "external_refs",
-    "type": "RECORD",
-    "mode": "REPEATED",
     "fields": [
       {
-        "name": "name",
-        "type": "STRING",
-        "mode": "NULLABLE"
+        "mode": "NULLABLE",
+        "name": "value",
+        "type": "STRING"
       },
       {
-        "name": "value",
-        "type": "STRING",
-        "mode": "NULLABLE"
+        "mode": "NULLABLE",
+        "name": "name",
+        "type": "STRING"
       }
-    ]
+    ],
+    "mode": "REPEATED",
+    "name": "external_refs",
+    "type": "RECORD"
   },
   {
-    "name": "default_period_periodicity",
-    "type": "STRING",
-    "mode": "NULLABLE"
+    "mode": "REPEATED",
+    "name": "labels",
+    "type": "INTEGER"
   },
   {
-    "name": "default_period_length",
-    "type": "INT64",
-    "mode": "NULLABLE"
+    "mode": "NULLABLE",
+    "name": "use_baseline",
+    "type": "BOOLEAN"
   },
   {
-    "name": "default_period_budget_type",
-    "type": "STRING",
-    "mode": "NULLABLE"
+    "mode": "NULLABLE",
+    "name": "use_project_allocations",
+    "type": "BOOLEAN"
   },
   {
-    "name": "default_period_hours_amount",
-    "type": "FLOAT64",
-    "mode": "NULLABLE"
+    "mode": "NULLABLE",
+    "name": "remaining_auto_calculated",
+    "type": "BOOLEAN"
   },
   {
-    "name": "default_period_price_amount",
-    "type": "FLOAT64",
-    "mode": "NULLABLE"
+    "mode": "NULLABLE",
+    "name": "estimation_units",
+    "type": "STRING"
   },
   {
-    "name": "created_by",
-    "type": "INT64",
-    "mode": "NULLABLE"
+    "mode": "NULLABLE",
+    "name": "use_task_followers",
+    "type": "BOOLEAN"
   },
   {
-    "name": "updated_by",
-    "type": "INT64",
-    "mode": "NULLABLE"
+    "description": "%E4Y-%m-%d",
+    "mode": "NULLABLE",
+    "name": "end_date",
+    "type": "DATE"
   },
   {
-    "name": "created_at",
-    "type": "DATETIME",
-    "mode": "NULLABLE"
+    "mode": "NULLABLE",
+    "name": "budget_type",
+    "type": "STRING"
   },
   {
-    "name": "updated_at",
-    "type": "DATETIME",
-    "mode": "NULLABLE"
+    "mode": "NULLABLE",
+    "name": "billable",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "use_sprints",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "name",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "budget",
+    "type": "FLOAT"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "use_sub_tasks",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "use_task_owner",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "status_description",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "minutes_per_estimation_point",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "client",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "baseline_win_chance",
+    "type": "FLOAT"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "description",
+    "type": "STRING"
+  },
+  {
+    "description": "%E4Y-%m-%d",
+    "mode": "NULLABLE",
+    "name": "start_date",
+    "type": "DATE"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "sprint_length",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "priority_level_id",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "color",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "connected_project",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "status",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "rate_card",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "stage",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "company_project_id",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "id",
+    "type": "INTEGER"
   }
 ]

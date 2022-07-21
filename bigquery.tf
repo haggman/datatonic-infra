@@ -41,10 +41,10 @@ module "bigquery" {
 
 //Transfer job for the projects.json
 resource "google_bigquery_data_transfer_config" "load_projects" {
-
+  project                = var.project_id
   display_name           = "project-loader"
   location               = var.gcp_region
-  data_source_id         = "project-loader"
+  data_source_id         = "google_cloud_storage"
   schedule               = ""
   schedule_options {
     disable_auto_scheduling = true
@@ -52,8 +52,8 @@ resource "google_bigquery_data_transfer_config" "load_projects" {
   destination_dataset_id = "datatonic_pipeline"
   params = {
     destination_table_name_template = "projects_staging"
-    data_path_template              = google_storage_bucket.pipeline_staging_bucket.name
+    data_path_template              = "gs://bkt-pipeline-staging-f5399bba/projects.json"
     file_format                     = "JSON"
-    write_preference                = "MIRROR"
+    write_disposition                = "MIRROR"
   }
 }
