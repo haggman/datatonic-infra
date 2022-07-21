@@ -70,7 +70,7 @@ resource "google_bigquery_data_transfer_config" "load_tasks" {
   }
   destination_dataset_id = "datatonic_pipeline"
   params = {
-    destination_table_name_template = "projects_staging"
+    destination_table_name_template = "tasks_staging"
     data_path_template              = "gs://bkt-pipeline-staging-f5399bba/tasks.json"
     file_format                     = "JSON"
     write_disposition               = "MIRROR"
