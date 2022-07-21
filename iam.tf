@@ -100,7 +100,7 @@ locals {
     (google_service_account.composer_sa.email) = [
       "roles/composer.worker",
       "roles/run.invoker",
-      "roles/bigquery.user",
+      "roles/bigquery.admin",
     ],
     //Auto created, Composer 2 SA
     "service-${var.project_number}@cloudcomposer-accounts.iam.gserviceaccount.com" = ["roles/composer.ServiceAgentV2Ext"],
