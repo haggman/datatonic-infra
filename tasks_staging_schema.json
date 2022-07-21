@@ -1,121 +1,114 @@
-[{
-    "name": "id",
-    "type": "INT64",
-    "mode": "NULLABLE"
-  }, {
-    "name": "company_card_id",
-    "type": "INT64",
-    "mode": "NULLABLE"
-  }, {
-    "name": "company_task_id",
-    "type": "INT64",
-    "mode": "NULLABLE"
-  }, {
-    "name": "title",
-    "type": "STRING",
-    "mode": "NULLABLE"
-  }, {
-    "name": "description",
-    "type": "STRING",
-    "mode": "NULLABLE"
-  }, {
-    "name": "project_id",
-    "type": "INT64",
-    "mode": "NULLABLE"
-  }, {
-    "name": "parent_task_id",
-    "type": "INT64",
-    "mode": "NULLABLE"
-  }, {
-    "name": "role",
-    "type": "INT64",
-    "mode": "NULLABLE"
-  }, {
-    "name": "low_estimate",
-    "type": "FLOAT64",
-    "mode": "NULLABLE"
-  }, {
-    "name": "high_estimate",
-    "type": "FLOAT64",
-    "mode": "NULLABLE"
-  }, {
-    "name": "forecast",
-    "type": "FLOAT64",
-    "mode": "NULLABLE"
-  }, {
-    "name": "estimate",
-    "type": "FLOAT64",
-    "mode": "NULLABLE"
-  }, {
-    "name": "remaining",
-    "type": "FLOAT64",
-    "mode": "NULLABLE"
-  }, {
-    "name": "approved",
-    "type": "BOOL",
-    "mode": "NULLABLE"
-  }, {
-    "name": "start_date",
-    "type": "DATE",
-    "mode": "NULLABLE"
-  }, {
-    "name": "end_date",
-    "type": "DATE",
-    "mode": "NULLABLE"
-  }, {
-    "name": "bug",
-    "type": "BOOL",
-    "mode": "NULLABLE"
-  }, {
-    "name": "high_priority",
-    "type": "BOOL",
-    "mode": "NULLABLE"
-  }, {
-    "name": "un_billable",
-    "type": "BOOL",
-    "mode": "NULLABLE"
-  }, {
-    "name": "blocked",
-    "type": "BOOL",
-    "mode": "NULLABLE"
-  }, {
-    "name": "sprint",
-    "type": "INT64",
-    "mode": "NULLABLE"
-  }, {
-    "name": "workflow_column",
-    "type": "INT64",
-    "mode": "NULLABLE"
-  }, {
-    "name": "milestone",
-    "type": "INT64",
-    "mode": "NULLABLE"
-  }, {
-    "name": "assigned_persons",
-    "type": "INT64",
-    "mode": "REPEATED"
-  }, {
-    "name": "labels",
-    "type": "INT64",
-    "mode": "REPEATED"
-  }, {
-    "name": "owner_id",
-    "type": "INT64",
-    "mode": "NULLABLE"
-  }, {
-    "name": "created_by",
-    "type": "INT64",
-    "mode": "NULLABLE"
-  }, {
-    "name": "updated_by",
-    "type": "INT64",
-    "mode": "NULLABLE"
-  }, {
+[
+  {
+    "description": "bq-datetime",
+    "mode": "NULLABLE",
     "name": "created_at",
-    "type": "DATETIME",
-    "mode": "NULLABLE"
-  }, {
+    "type": "TIMESTAMP"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "created_by",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "labels",
+    "type": "STRING"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "assigned_persons",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "milestone",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "blocked",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "un_billable",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "updated_by",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "start_date",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "sprint",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "approved",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "title",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "bug",
+    "type": "BOOLEAN"
+  },
+  {
+    "description": "bq-datetime",
+    "mode": "NULLABLE",
     "name": "updated_at",
-    "type": "DATETIME",
-    "mode": "NULLABLE"
-  }]
+    "type": "TIMESTAMP"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "high_priority",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "role",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "project_id",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "description",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "workflow_column",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "company_task_id",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "end_date",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "id",
+    "type": "INTEGER"
+  }
+]
