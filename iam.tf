@@ -100,6 +100,7 @@ locals {
     (google_service_account.composer_sa.email) = [
       "roles/composer.worker",
       "roles/run.invoker",
+      "roles/storage.admin",
       "roles/bigquery.admin",
     ],
     //Auto created, Composer 2 SA
