@@ -1,5 +1,10 @@
 [
   {
+    "mode": "NULLABLE",
+    "name": "owner_id",
+    "type": "INTEGER"
+  },
+  {
     "description": "bq-datetime",
     "mode": "NULLABLE",
     "name": "created_at",
@@ -13,7 +18,13 @@
   {
     "mode": "REPEATED",
     "name": "labels",
-    "type": "STRING"
+    "type": "INTEGER"
+  },
+  {
+    "description": "%E4Y-%m-%d",
+    "mode": "NULLABLE",
+    "name": "start_date",
+    "type": "DATE"
   },
   {
     "mode": "REPEATED",
@@ -27,7 +38,7 @@
   },
   {
     "mode": "NULLABLE",
-    "name": "blocked",
+    "name": "approved",
     "type": "BOOLEAN"
   },
   {
@@ -36,40 +47,20 @@
     "type": "BOOLEAN"
   },
   {
+    "description": "%E4Y-%m-%d",
+    "mode": "NULLABLE",
+    "name": "end_date",
+    "type": "DATE"
+  },
+  {
     "mode": "NULLABLE",
     "name": "updated_by",
     "type": "INTEGER"
   },
   {
     "mode": "NULLABLE",
-    "name": "start_date",
-    "type": "STRING"
-  },
-  {
-    "mode": "NULLABLE",
     "name": "sprint",
-    "type": "STRING"
-  },
-  {
-    "mode": "NULLABLE",
-    "name": "approved",
-    "type": "BOOLEAN"
-  },
-  {
-    "mode": "NULLABLE",
-    "name": "title",
-    "type": "STRING"
-  },
-  {
-    "mode": "NULLABLE",
-    "name": "bug",
-    "type": "BOOLEAN"
-  },
-  {
-    "description": "bq-datetime",
-    "mode": "NULLABLE",
-    "name": "updated_at",
-    "type": "TIMESTAMP"
+    "type": "INTEGER"
   },
   {
     "mode": "NULLABLE",
@@ -93,6 +84,32 @@
   },
   {
     "mode": "NULLABLE",
+    "name": "bug",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "title",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "parent_task_id",
+    "type": "INTEGER"
+  },
+  {
+    "description": "bq-datetime",
+    "mode": "NULLABLE",
+    "name": "updated_at",
+    "type": "TIMESTAMP"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "estimate",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
     "name": "workflow_column",
     "type": "INTEGER"
   },
@@ -103,8 +120,13 @@
   },
   {
     "mode": "NULLABLE",
-    "name": "end_date",
-    "type": "STRING"
+    "name": "blocked",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "remaining",
+    "type": "INTEGER"
   },
   {
     "mode": "NULLABLE",
