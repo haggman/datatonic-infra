@@ -9,6 +9,15 @@ resource "google_composer_environment" "pipeline_composer_instance" {
     //Going to try Cloud Composer v2
     software_config {
       image_version = "composer-2.0.19-airflow-2.2.5"
+      pypi_packages = {
+        dbt-core     = ""
+        dbt-bigquery = ""
+        airflow-dbt  = ""
+      }
+
+      env_variables = {
+        DBT_PROFILE_DIR = "/home/airflow/gcs/data/profiles"
+      }
     }
     node_config {
       service_account = google_service_account.composer_sa.email
