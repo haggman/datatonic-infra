@@ -16,7 +16,7 @@ resource "google_composer_environment" "pipeline_composer_instance" {
       }
 
       env_variables = {
-        DBT_PROFILE_DIR = "/home/airflow/gcs/data/profiles"
+        DBT_PROFILES_DIR = "/home/airflow/gcs/data/profiles"
       }
     }
     node_config {
