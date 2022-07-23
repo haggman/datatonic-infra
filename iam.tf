@@ -70,6 +70,13 @@ resource "google_service_account" "composer_sa" {
   project      = var.project_id
 }
 
+//Create the SA for the DBT app (Workload Identity)
+resource "google_service_account" "composer_dbt_sa" {
+  account_id   = "sa-dbt-composer"
+  display_name = "DBT Workload Ident."
+  project      = var.project_id
+}
+
 //Create the SA that deploys to Composer
 resource "google_service_account" "composer_deployer_sa" {
   account_id   = "sa-composer-deployer"
@@ -103,6 +110,11 @@ locals {
       "roles/storage.admin",
       "roles/bigquery.admin",
     ],
+    // DBT's identity
+    (google_service_account.composer_dbt_sa.email) = [
+      "roles/storage.admin",
+      "roles/bigquery.admin",
+    ]
     //Auto created, Composer 2 SA
     "service-${var.project_number}@cloudcomposer-accounts.iam.gserviceaccount.com" = ["roles/composer.ServiceAgentV2Ext"],
     //Cloud composer deployer
