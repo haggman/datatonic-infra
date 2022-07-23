@@ -40,25 +40,26 @@ resource "google_composer_environment" "pipeline_composer_instance" {
 }
 
 // Create a new namespace for the dbt container to use
+// The below won't work because our cluster has a private IP
 
 # Get the credentials 
-resource "null_resource" "get-credentials" {
+# resource "null_resource" "get-credentials" {
 
- depends_on = [google_composer_environment.pipeline_composer_instance] 
+#  depends_on = [google_composer_environment.pipeline_composer_instance] 
  
- provisioner "local-exec" {
-   command = "gcloud container clusters get-credentials ${google_composer_environment.pipeline_composer_instance.config[0].gke_cluster} --region europe-west2"
- }
-}
+#  provisioner "local-exec" {
+#    command = "gcloud container clusters get-credentials ${google_composer_environment.pipeline_composer_instance.config[0].gke_cluster} --region europe-west2"
+#  }
+# }
 
-# Create a namespace
-resource "kubernetes_namespace" "dbt-namespace" {
+# # Create a namespace
+# resource "kubernetes_namespace" "dbt-namespace" {
 
- depends_on = [null_resource.get-credentials]
+#  depends_on = [null_resource.get-credentials]
 
- metadata {
-   name = "dbt-pipeline"
- }
-}
+#  metadata {
+#    name = "dbt-pipeline"
+#  }
+# }
 
 
