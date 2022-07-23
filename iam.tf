@@ -104,28 +104,28 @@ resource "google_service_account" "run_deployer_sa" {
 locals {
   sa_roles = {
     //Cloud composer SA
-    (google_service_account.composer_sa.email) = [
+    "${google_service_account.composer_sa.account_id}@${var.project_id}.iam.gserviceaccount.com" = [
       "roles/composer.worker",
       "roles/run.invoker",
       "roles/storage.admin",
       "roles/bigquery.admin",
     ],
     // DBT's identity
-    (google_service_account.composer_dbt_sa.email) = [
+     "${google_service_account.composer_dbt_sa.account_id}@${var.project_id}.iam.gserviceaccount.com" = [
       "roles/storage.admin",
       "roles/bigquery.admin",
     ]
     //Auto created, Composer 2 SA
     "service-${var.project_number}@cloudcomposer-accounts.iam.gserviceaccount.com" = ["roles/composer.ServiceAgentV2Ext"],
     //Cloud composer deployer
-    (google_service_account.composer_deployer_sa.email) = ["roles/storage.objectAdmin"],
+    "${google_service_account.composer_deployer_sa.account_id}@${var.project_id}.iam.gserviceaccount.com" = ["roles/storage.objectAdmin"]
     //Cloud Run
-    (google_service_account.run_sa.email) = [
+    "${google_service_account.run_sa.account_id}@${var.project_id}.iam.gserviceaccount.com" = [
       "roles/iam.serviceAccountUser",
       "roles/storage.objectAdmin",
     ],
     //Cloud Run deployer
-    (google_service_account.run_deployer_sa.email) = [
+    "${google_service_account.run_deployer_sa.account_id}@${var.project_id}.iam.gserviceaccount.com" = [
       "roles/run.admin",
       "roles/storage.admin", //Really only needed for first push (Creates initial GCR bucket)
       "roles/iam.serviceAccountUser"
