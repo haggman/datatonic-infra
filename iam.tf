@@ -2,16 +2,16 @@
 locals {
   //my list of users and their corresponding roles
   user_roles = {
-    "nan.kang@datatonic.com"        = ["roles/browser"],
-    "abdikarim.dilib@datatonic.com" = ["roles/browser"],
-    "alice.staton@datatonic.com"    = ["roles/browser"],
-    "ferda.ustun@datatonic.com"     = ["roles/browser"],
-    "kumail.kermalli@datatonic.com" = ["roles/browser"],
-    "lily.relph@datatonic.com"      = ["roles/browser"],
-    "miles.trevethan@datatonic.com" = ["roles/browser"],
-    "mohamed.khadar@datatonic.com"  = ["roles/browser"],
-    "ronak.patel@datatonic.com"     = ["roles/browser"],
-    "sabah.hussain@datatonic.com"   = ["roles/browser"],
+    "nan.kang@datatonic.com"        = ["roles/viewer"],
+    "abdikarim.dilib@datatonic.com" = ["roles/viewer"],
+    "alice.staton@datatonic.com"    = ["roles/viewer"],
+    "ferda.ustun@datatonic.com"     = ["roles/viewer"],
+    "kumail.kermalli@datatonic.com" = ["roles/viewer"],
+    "lily.relph@datatonic.com"      = ["roles/viewer"],
+    "miles.trevethan@datatonic.com" = ["roles/viewer"],
+    "mohamed.khadar@datatonic.com"  = ["roles/viewer"],
+    "ronak.patel@datatonic.com"     = ["roles/viewer"],
+    "sabah.hussain@datatonic.com"   = ["roles/viewer"],
   }
 
   /*
